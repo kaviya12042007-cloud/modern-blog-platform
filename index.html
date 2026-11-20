@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INK & IDEAS - Modern Blog Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#0f0f0f;--accent:#FF5A1F;--blue:#3B82F6;--green:#10B981;--purple:#8B5CF6;--pink:#EC4899;--gray:#6B7280;--light:#F9FAFB;--border:#E5E7EB}
+body{font-family:'Inter',sans-serif;background:#fff;color:var(--black);line-height:1.6}
+h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.1}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{max-width:1200px;margin:auto;padding:20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;z-index:10;border-bottom:1px solid var(--border)}
+.logo{font-family:'Playfair Display',serif;font-size:28px;font-weight:900}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:24px;font-weight:500;font-size:14px}
+.btn{background:var(--black);color:#fff;padding:10px 20px;border-radius:999px;font-size:14px;font-weight:600;border:none;cursor:pointer}
+.btn-orange{background:var(--accent)}
+
+/* HERO / FEATURED */
+.container{max-width:1200px;margin:auto;padding:24px}
+.hero-label{font-size:12px;letter-spacing:2px;font-weight:700;color:var(--accent);text-transform:uppercase;margin-bottom:12px}
+.featured{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;background:var(--black);color:#fff;border-radius:24px;overflow:hidden;margin:10px 0 32px}
+.featured-img{font-size:90px;display:flex;align-items:center;justify-content:center;min-height:340px;background:linear-gradient(135deg,#FF5A1F,#FFB800)}
+.featured-text{padding:32px 28px 32px 0;display:flex;flex-direction:column;justify-content:center}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700;color:#fff;width:fit-content;margin-bottom:14px}
+.badge-tech{background:var(--blue)} .badge-design{background:var(--purple)} .badge-travel{background:var(--green)} .badge-life{background:var(--pink)} .badge-ai{background:#111}
+.featured-text h1{font-size:44px;margin-bottom:14px}
+.featured-text p{color:#D1D5DB;margin-bottom:18px}
+.author{display:flex;align-items:center;gap:12px;margin-top:10px}
+.avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:18px;flex-shrink:0}
+.meta{font-size:13px;color:var(--gray)}
+.meta b{color:var(--black);font-size:14px}
+.featured .meta{color:#9CA3AF} .featured .meta b{color:#fff}
+
+/* FILTERS */
+.section-head{display:flex;justify-content:space-between;align-items:center;margin:10px 0 18px;flex-wrap:wrap;gap:12px}
+.section-head h2{font-size:32px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{padding:9px 16px;border:1px solid var(--border);border-radius:999px;background:#fff;cursor:pointer;font-weight:600;font-size:13px}
+.filter-btn.active{background:var(--black);color:#fff;border-color:var(--black)}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{border:1px solid var(--border);border-radius:20px;overflow:hidden;background:#fff;transition:.3s;cursor:pointer}
+.card:hover{transform:translateY(-6px);box-shadow:0 20px 30px rgba(0,0,0,.08)}
+.card-img{height:190px;display:flex;align-items:center;justify-content:center;font-size:64px}
+.card-body{padding:18px}
+.card-body h3{font-size:21px;margin:10px 0 8px}
+.card-body p{font-size:14px;color:var(--gray)}
+.card-top{display:flex;justify-content:space-between;align-items:center}
+.read-time{font-size:12px;background:var(--light);padding:5px 10px;border-radius:999px;font-weight:600}
+.tags{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:11px;background:#F3F4F6;padding:4px 9px;border-radius:999px;font-weight:600}
+.card .author{margin-top:16px;border-top:1px solid var(--border);padding-top:14px}
+
+/* NEWSLETTER */
+.newsletter{margin:40px 0;background:linear-gradient(135deg,#111,#3B2A1A);color:#fff;border-radius:24px;padding:36px;text-align:center}
+.newsletter h2{font-size:36px;margin-bottom:10px}
+.newsletter p{color:#D1D5DB;margin-bottom:20px}
+.newsletter-form{display:flex;gap:10px;max-width:520px;margin:auto;flex-wrap:wrap;justify-content:center}
+.newsletter-form input{flex:1;min-width:220px;padding:14px 18px;border-radius:999px;border:none;outline:none;font-size:15px}
+.newsletter-form button{background:var(--accent);color:#fff;border:none;padding:14px 24px;border-radius:999px;font-weight:700;cursor:pointer}
+.success{color:#6EE7B7;margin-top:12px;font-weight:600;display:none}
+footer{text-align:center;padding:20px;color:var(--gray);font-size:13px;border-top:1px solid var(--border)}
+
+@media(max-width:900px){.featured{grid-template-columns:1fr}.featured-text{padding:0 24px 28px}.featured-text h1{font-size:34px}.grid{grid-template-columns:repeat(2,1fr)}.nav-links{display:none}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.featured-img{min-height:220px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">INK <span>&</span> IDEAS</div>
+  <div class="nav-links"><a href="#">Home</a><a href="#">Tech</a><a href="#">Design</a><a href="#">Travel</a><a href="#">About</a></div>
+  <button class="btn" onclick="document.getElementById('news').scrollIntoView({behavior:'smooth'})">Subscribe</button>
+</nav>
+
+<div class="container">
+  <p class="hero-label">✦ Featured Top Story</p>
+  <div class="featured">
+    <div class="featured-img">🚀</div>
+    <div class="featured-text">
+      <span class="badge badge-tech">TECHNOLOGY</span>
+      <h1>AI Is Not Replacing Designers. It's Making Them Superhuman.</h1>
+      <p>How AI tools, design systems and human creativity are coming together to build the next generation of products. A deep dive for every frontend developer.</p>
+      <div class="author">
+        <div class="avatar" style="background:#FF5A1F">K</div>
+        <div class="meta"><b>Kaviya B</b><br>Frontend Developer • Nov 20, 2026 • 8 min read</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-head">
+    <h2>Latest Stories</h2>
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterPosts('all',this)">All</button>
+      <button class="filter-btn" onclick="filterPosts('tech',this)">Tech</button>
+      <button class="filter-btn" onclick="filterPosts('design',this)">Design</button>
+      <button class="filter-btn" onclick="filterPosts('travel',this)">Travel</button>
+      <button class="filter-btn" onclick="filterPosts('life',this)">Lifestyle</button>
+    </div>
+  </div>
+
+  <div class="grid" id="blogGrid">
+    <!-- Card 1 -->
+    <article class="card" data-cat="tech">
+      <div class="card-img" style="background:#DBEAFE">💻</div>
+      <div class="card-body">
+        <div class="card-top"><span class="badge badge-tech">Tech</span><span class="read-time">⏱ 5 min read</span></div>
+        <h3>CSS Grid Made Simple: Build Any Layout in 10 Minutes</h3>
+        <p>Forget float and flex hacks. Learn how Grid changes everything for responsive layouts.</p>
+        <div class="tags"><span class="tag">#CSSGrid</span><span class="tag">#Frontend</span><span class="tag">#Responsive</span></div>
+        <div class="author"><div class="avatar" style="background:#3B82F6">A</div><div class="meta"><b>Arjun M</b><br>Nov 18, 2026</div></div>
+      </div>
+    </article>
+    <!-- Card 2 -->
+    <article class="card" data-cat="design">
+      <div class="card-img" style="background:#EDE9FE">🎨</div>
+      <div class="card-body">
+        <div class="card-top"><span class="badge badge-design">Design</span><span class="read-time">⏱ 6 min read</span></div>
+        <h3>Typography Hierarchy: Why Your Blog Looks Messy</h3>
+        <p>Font size, weight and spacing - the 3 secrets behind beautiful editorial design.</p>
+        <div class="tags"><span class="tag">#Typography</span><span class="tag">#UI</span><span class="tag">#Hierarchy</span></div>
+        <div class="author"><div class="avatar" style="background:#8B5CF6">P</div><div class="meta"><b>Priya R</b><br>Nov 17, 2026</div></div>
+      </div>
+    </article>
+    <!-- Card 3 -->
+    <article class="card" data-cat="travel">
+      <div class="card-img" style="background:#D1FAE5">✈️</div>
+      <div class="card-body">
+        <div class="card-top"><span class="badge badge-travel">Travel</span><span class="read-time">⏱ 4 min read</span></div>
+        <h3>Hosur to Hampi: A Solo Trip That Changed Me</h3>
+        <p>Temples, sunsets and boulders - my budget travel guide to Karnataka's hidden gem.</p>
+        <div class="tags"><span class="tag">#Travel</span><span class="tag">#SoloTrip</span><span class="tag">#Hampi</span></div>
+        <div class="author"><div class="avatar" style="background:#10B981">K</div><div class="meta"><b>Kaviya S</b><br>Nov 16, 2026</div></div>
+      </div>
+    </article>
+    <!-- Card 4 -->
+    <article class="card" data-cat="tech">
+      <div class="card-img" style="background:#FEF3C7">⚡</div>
+      <div class="card-body">
+        <div class="card-top"><span class="badge badge-tech">Tech</span><span class="read-time">⏱ 7 min read</span></div>
+        <h3>JavaScript Filter: Build Tag Filters Without Library</h3>
+        <p>Click a tag and filter posts instantly. Pure JS, no framework needed. Full code inside.</p>
+        <div class="tags"><span class="tag">#JavaScript</span><span class="tag">#Filter</span><span class="tag">#Beginner</span></div>
+        <div class="author"><div class="avatar" style="background:#F59E0B">S</div><div class="meta"><b>Suresh K</b><br>Nov 15, 2026</div></div>
+      </div>
+    </article>
+    <!-- Card 5 -->
+    <article class="card" data-cat="design">
+      <div class="card-img" style="background:#FCE7F3">✨</div>
+      <div class="card-body">
+        <div class="card-top"><span class="badge badge-design">Design</span><span class="read-time">⏱ 5 min read</span></div>
+        <h3>Card Layouts That Make People Click</h3>
+        <p>Hover, shadow and spacing - how to design cards that feel premium.</p>
+        <div class="tags"><span class="tag">#CardLayout</span><span class="tag">#UI</span><span class="tag">#Design</span></div>
+        <div class="author"><div class="avatar" style="background:#EC4899">M</div><div class="meta"><b>Meena D</b><br>Nov 14, 2026</div></div>
+      </div>
+    </article>
+    <!-- Card 6 -->
+    <article class="card" data-cat="life">
+      <div class="card-img" style="background:#E0E7FF">☕</div>
+      <div class="card-body">
+        <div class="card-top"><span class="badge badge-life">Lifestyle</span><span class="read-time">⏱ 3 min read</span></div>
+        <h3>Morning Routine of a Frontend Developer</h3>
+        <p>Coffee, code, and consistency - how I stay productive while learning.</p>
+        <div class="tags"><span class="tag">#Productivity</span><span class="tag">#Routine</span><span class="tag">#Life</span></div>
+        <div class="author"><div class="avatar" style="background:#6366F1">K</div><div class="meta"><b>Kaviya S</b><br>Nov 13, 2026</div></div>
+      </div>
+    </article>
+  </div>
+
+  <div class="newsletter" id="news">
+    <h2>Never Miss a Story 📩</h2>
+    <p>Join 2,500+ readers. One good blog every week, no spam.</p>
+    <form class="newsletter-form" onsubmit="subscribe(event)">
+      <input type="email" id="email" placeholder="Enter your email address" required>
+      <button type="submit">Subscribe Free →</button>
+    </form>
+    <p class="success" id="successMsg">🎉 Thank you! You're subscribed to INK & IDEAS!</p>
+  </div>
+</div>
+
+<footer>Made with ❤️ by Kaviya B | INK & IDEAS - Modern Blog Platform | Pynexia Tech Project</footer>
+
+<script>
+function filterPosts(cat, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.card').forEach(card=>{
+    card.style.display = (cat==='all' || card.dataset.cat===cat) ? 'block' : 'none';
+  });
+}
+function subscribe(e){
+  e.preventDefault();
+  document.getElementById('successMsg').style.display='block';
+  document.getElementById('email').value='';
+}
+</script>
+</body>
+</html>
